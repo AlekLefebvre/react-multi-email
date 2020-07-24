@@ -26,9 +26,11 @@ class ReactMultiEmail extends React.Component {
             };
             if (value !== '') {
                 if (re.test(value)) {
-                    let arr = value.split(re).filter(n => {
+                    let splitData = value.split(re).filter(n => {
                         return n !== '' && n !== undefined && n !== null;
                     });
+                    const setArr = new Set(splitData);
+                    let arr = [...setArr];
                     do {
                         if (isEmail('' + arr[0])) {
                             addEmails('' + arr.shift());
@@ -138,7 +140,7 @@ class ReactMultiEmail extends React.Component {
             } },
             placeholder ? React.createElement("span", { "data-placeholder": true }, placeholder) : null,
             emails.map((email, index) => getLabel(email, index, this.removeEmail)),
-            React.createElement("input", { ref: this.emailInputRef, type: "text", value: inputValue, onFocus: this.handleOnFocus, onBlur: this.handleOnBlur, onChange: this.handleOnChange, onKeyDown: this.handleOnKeydown, onKeyUp: this.handleOnKeyup })));
+            React.createElement("input", { name: "ccField", id: "ccField", ref: this.emailInputRef, type: "text", value: inputValue, onFocus: this.handleOnFocus, onBlur: this.handleOnBlur, onChange: this.handleOnChange, onKeyDown: this.handleOnKeydown, onKeyUp: this.handleOnKeyup })));
     }
 }
 export default ReactMultiEmail;

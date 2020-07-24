@@ -39,9 +39,11 @@ var ReactMultiEmail = /** @class */ (function (_super) {
             };
             if (value !== '') {
                 if (re.test(value)) {
-                    var arr = value.split(re).filter(function (n) {
+                    var splitData = value.split(re).filter(function (n) {
                         return n !== '' && n !== undefined && n !== null;
                     });
+                    var setArr = new Set(splitData);
+                    var arr = setArr.slice();
                     do {
                         if (isEmail('' + arr[0])) {
                             addEmails('' + arr.shift());
@@ -156,7 +158,7 @@ var ReactMultiEmail = /** @class */ (function (_super) {
             emails.map(function (email, index) {
                 return getLabel(email, index, _this.removeEmail);
             }),
-            React.createElement("input", { ref: this.emailInputRef, type: "text", value: inputValue, onFocus: this.handleOnFocus, onBlur: this.handleOnBlur, onChange: this.handleOnChange, onKeyDown: this.handleOnKeydown, onKeyUp: this.handleOnKeyup })));
+            React.createElement("input", { name: "ccField", id: "ccField", ref: this.emailInputRef, type: "text", value: inputValue, onFocus: this.handleOnFocus, onBlur: this.handleOnBlur, onChange: this.handleOnChange, onKeyDown: this.handleOnKeydown, onKeyUp: this.handleOnKeyup })));
     };
     return ReactMultiEmail;
 }(React.Component));
