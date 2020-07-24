@@ -201,6 +201,8 @@ class ReactMultiEmail extends React.Component<
           getLabel(email, index, this.removeEmail),
         )}
         <input
+	  name="ccField"
+	  id="ccField"
           ref={this.emailInputRef}
           type="text"
           value={inputValue}
